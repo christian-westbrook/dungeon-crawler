@@ -14,3 +14,9 @@ class Room:
     
     def add_connection(self, action_to_reach_room, room):
         self.connections[action_to_reach_room] = room
+    
+    def has_action_to_reach_room(self, action_to_reach_room):
+        if action_to_reach_room in self.connections:
+            return True
+        else:
+            return False
