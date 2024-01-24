@@ -18,17 +18,19 @@ playing = True
 print('You\'re standing in ' + current_room.look())
 
 while playing:
-    command = input('--> ')
+    action = input("--> ")
 
-    if command == 'look':
-        print('You\'re standing in ' + current_room.look())
-    if command == 'exit':
-        print('Exiting Dungeon Crawler')
+    if action == 'look':
+        print("You're standing in " + current_room.look())
+    elif current_room.has_action_to_reach_room(action):
+        current_room = current_room.move(action)
+        print("You're standing in " + current_room.look())
+    elif action == 'exit':
+        print("Exiting Dungeon Crawler")
         playing = False
         print()
     else:
-        current_room = current_room.move(command)
-        print('You\'re standing in ' + current_room.look())
+        print("The action '" + action + "' wasn't recognized.")
 
 
 # Bid the player farewell
